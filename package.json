@@ -1,0 +1,81 @@
+{
+  "name": "virtual-human-muscle-anatomy-react-electron-threejs-app",
+  "description": "Virtual Human Muscle Anatomy Demo",
+  "version": "1.7.0",
+  "private": false,
+  "license": "MIT",
+  "author": {
+    "name": "Alan Zhao",
+    "email": "azhao6060@gmail.com",
+    "url": "https://www.MakerAL.com"
+  },
+  "build": {
+    "appId": "com.my-website.react-electron-browser",
+    "productName": "Virtual Human Muscle Anatomy",
+    "copyright": "Copyright © 2019-2020 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "build/icon.icns",
+      "target": [
+        "dir",
+        "dmg"
+      ]
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "extraResources": [
+      "resources/**/*"
+    ]
+  },
+  "homepage": "./",
+  "main": "build/electron.js",
+  "scripts": {
+    "dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:5000 && cross-env ELECTRON_START_URL=http://localhost:5000 electron .\"",
+    "start": "cross-env PORT=5000 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "cover": "yarn test --coverage --watchAll",
+    "postinstall": "electron-builder install-app-deps",
+    "package": "yarn build && electron-builder -m"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.2",
+    "gsap": "^3.7.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "three": "^0.130.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "concurrently": "^6.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "^13.1.7",
+    "electron-builder": "^22.11.7",
+    "node-sass": "^6.0.1",
+    "typescript": "^4.3.5",
+    "wait-on": "^6.0.0"
+  }
+}

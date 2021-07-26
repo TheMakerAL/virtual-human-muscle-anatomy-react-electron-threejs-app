@@ -1,0 +1,28 @@
+.part {
+  border: 3px solid #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 300px;
+  left: 20%;
+  z-index: 99;
+  color: #fff;
+  text-align: center;
+  padding: 20px 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  font-size: 20px;
+  min-width: 200px;
+  text-transform: uppercase;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+
+  @include media-breakpoint-down(md) {
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #333;
+  }
+}

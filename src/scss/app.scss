@@ -1,0 +1,340 @@
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../node_modules/@fortawesome/fontawesome-free/css/all.css';
+
+@import './variables.scss';
+@import './animations.scss';
+@import './parts.scss';
+
+html {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+  /* Prevent callout to copy image, etc when tap to hold */
+  -webkit-touch-callout: none;
+
+  /* Prevent webkit from resizing text to fit */
+  -webkit-text-size-adjust: none;
+
+  /* Disable text selection, or your app will feel like a web page */
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+
+  /* Font smoothing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+
+  &:after {
+    position: absolute;
+    display: block;
+    content: '';
+    height: 10px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+
+    @extend .gradient;
+
+    animation: rotate 3s infinite linear;
+  }
+}
+
+.body-no-gradient {
+  background: #fff;
+  &:after {
+    display: none;
+  }
+}
+
+.logo {
+  background-image: url('../images/MakerAL.com.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 300px auto;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: bounce;
+
+  @include media-breakpoint-down(md) {
+    background-size: 200px auto;
+  }
+}
+
+// Begin app layout
+
+#app {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  // Smoother startup
+  animation: fadeIn 0.5s;
+}
+
+main {
+  // Expand child
+  flex: 1;
+  display: flex;
+}
+
+footer,
+header {
+  display: flex;
+  justify-content: center;
+
+  background-color: $theme-color-orange;
+  padding: 10px;
+}
+
+.loading,
+.failed {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+
+  i {
+    font-size: 40px;
+    color: #fff;
+  }
+}
+
+// End app layout
+
+header {
+  ul {
+    /* https://css-tricks.com/flexbox-bar-navigation/ */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+
+    li {
+      margin: 0 20px;
+      a {
+        padding: 20px 0;
+        font-size: 1.6rem;
+        font-weight: normal;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 500;
+        display: flex;
+        align-items: flex-start;
+        color: #fff;
+        letter-spacing: 2px;
+      }
+
+      .selected {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    ul {
+      li {
+        margin: 0 5px;
+        a {
+          padding: 5px 0;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  color: #fff;
+  font-size: 14px;
+  .col-left {
+    text-align: center;
+    @include media-breakpoint-up(md) {
+      text-align: left;
+    }
+  }
+
+  .col-right {
+    text-align: center;
+    @include media-breakpoint-up(md) {
+      text-align: right;
+    }
+  }
+}
+
+.modal-header .close {
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+  font-weight: 500;
+  width: 50px;
+  height: 50px;
+}
+
+.page {
+  padding: 0;
+  flex: 1 1;
+  background-color: #000;
+
+  /* Smoother startup */
+  animation: fadeIn 0.5s;
+}
+
+.gradient {
+    background: rgb(48,255,144); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgba(48,255,144,1) 0%, rgba(237,45,237,1) 25%, rgba(201,152,38,1) 50%, rgba(48,255,230,1) 75%, rgba(48,255,144,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(48,255,144,1)), color-stop(25%,rgba(237,45,237,1)), color-stop(50%,rgba(201,152,38,1)), color-stop(75%,rgba(48,255,230,1)), color-stop(100%,rgba(48,255,144,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30ff90', endColorstr='#30ff90',GradientType=1 ); /* IE6-9 */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.home,
+.lost {
+  .loading {
+    border: 1px solid #000;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    i {
+      color: #c0c0c0;
+    }
+  }
+
+  #scene {
+    display: none;
+  }
+
+  #instructions {
+    display: block;
+    border: 1px solid #fff;
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    display: none;
+    color: #efefef;
+    max-width: 300px;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    ul {
+      margin-bottom: 0;
+      margin-left: -10px;
+    }
+  }
+
+  #controls {
+    display: block;
+    border: 1px solid #fff;
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    bottom: 40%;
+    right: 5%;
+    display: none;
+
+    button {
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      min-width: 200px;
+      display: block;
+      background-color: #fff;
+      color: #333;
+      padding: 10px;
+      text-transform: uppercase;
+      transition: background-color ease-in-out 0.3s;
+
+      &:hover {
+        background-color: #ff5722;
+        color: #fff;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  #disclaimer {
+    display: block;
+    text-aling: left;
+    border: 1px solid #fff;
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.3;
+    color: #fff;
+    min-width: 200px;
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    max-width: 300px;
+    display: none;
+    a {
+      color: #fff;
+    }
+  }
+
+  #menu {
+    position: absolute;
+    top: 300px;
+    right: 200px;
+    color: yellow;
+    display: none;
+  }
+
+  @include media-breakpoint-down(md) {
+    #instructions,
+    #controls,
+    #disclaimer {
+      display: none!important;
+    }
+  }
+}
