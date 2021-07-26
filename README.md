@@ -7,7 +7,7 @@ Author:
 
 Prerequisites
 - Node v14
-- Run `yarn install`
+- Run `yarn install && yarn build`
 
 To start development in Electron
 - Run `yarn dev`
